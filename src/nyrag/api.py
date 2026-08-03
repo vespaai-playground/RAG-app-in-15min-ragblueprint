@@ -439,9 +439,9 @@ app.mount("/static", StaticFiles(directory=str(base_dir / "static")), name="stat
 async def get(request: Request):
     deploy_mode = "cloud" if _is_cloud_mode() else "local"
     return templates.TemplateResponse(
+        request,
         "chat.html",
         {
-            "request": request,
             "deploy_mode": deploy_mode,
         },
     )
